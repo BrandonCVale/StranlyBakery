@@ -64,7 +64,5 @@ class LoginView(ft.Column):
         self.presenter.handle_forgot_password(username)
 
     # --- Interface exposed to the presenter ---
-    def show_message(self, text: str):
-        self.page.snack_bar = ft.SnackBar(content=ft.Text(text))
-        self.page.snack_bar.open = True
-        self.page.update()
+    def show_message(self, text):
+        self.page.open(ft.SnackBar(content=ft.Text(text)))
