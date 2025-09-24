@@ -1,0 +1,20 @@
+# Environment files
+.env
+
+# Environment files that are uploaded
+!.env.example
+
+# Python Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtualenv Files
+.venv/
+venv/
+env/
+
+# IDE Files
+.idea/
+.vscode/
