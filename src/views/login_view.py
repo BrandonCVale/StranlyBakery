@@ -7,8 +7,9 @@ from src.views.main_view import SideMenuView
 class LoginView(ft.Column):
     def __init__(self, page: ft.Page):
         super().__init__(
-            alignment=ft.MainAxisAlignment.CENTER,
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER
+            expand=True, # Takes up the entire screen space
+            alignment=ft.MainAxisAlignment.CENTER, # alinea en el centro
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER, # centrado horizontal
         )
 
         # Saving the reference to the page
@@ -46,7 +47,7 @@ class LoginView(ft.Column):
             on_click=self.on_forgot_password
         )
 
-        # Adding all the controls to the column
+        # -- Layout Principal --
         self.controls = [
             self.user_name,
             self.password,

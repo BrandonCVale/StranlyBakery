@@ -21,23 +21,29 @@ class PrincipalInterface(ft.Column):
         # - KPI cards -
         self.kpi_ingresos = ft.Card(
             content=ft.Container(
-                content=ft.Text(value="Ingresos: ", size=16),
-                padding=10,
-                alignment=ft.alignment.center
+                content=ft.Text(value="Ingresos: $1,150", size=16),
+                padding=15,
+                alignment=ft.alignment.center,
+                bgcolor='#EFE5DC',
+                border_radius=10
             )
         )
         self.kpi_egresos = ft.Card(
             content=ft.Container(
-                content=ft.Text(value="Egresos: ", size=16),
-                padding=10,
-                alignment=ft.alignment.center
+                content=ft.Text(value="Egresos: $200", size=16),
+                padding=15,
+                alignment=ft.alignment.center,
+                bgcolor='#EFE5DC',
+                border_radius=10
             )
         )
         self.kpi_ultima_venta = ft.Card(
             content=ft.Container(
-                content=ft.Text(value='Ultima venta: ', size=16),
-                padding=10,
-                alignment=ft.alignment.center
+                content=ft.Text(value='Ultima venta: $160', size=16),
+                padding=15,
+                alignment=ft.alignment.center,
+                bgcolor='#EFE5DC',
+                border_radius=10
             )
         )
         # - Table -
@@ -51,10 +57,18 @@ class PrincipalInterface(ft.Column):
             rows=[]  # start empty
         )
 
+        # -- Layout principal --
         self.controls = [
+            # -- KPIs --
             ft.Row(
-                controls=[self.kpi_ingresos, self.kpi_egresos, self.kpi_ultima_venta]
+                controls=[
+                    self.kpi_ingresos, self.kpi_egresos, self.kpi_ultima_venta
+                ],
+                alignment=ft.MainAxisAlignment.START,
+                spacing=20,
+                expand=False
             ),
+
             ft.Text(value="Productos vendidos", size=18),
             self.productos_vendidos
         ]

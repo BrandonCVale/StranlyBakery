@@ -5,11 +5,15 @@ from views.login_view import LoginView
 def main(page: ft.Page):
     page.title = "Stranly Bakery"
     page.theme_mode = "light"
-    page.vertical_alignment = "center"
-    page.horizontal_alignment = "center"
 
     login_view = LoginView(page)
-    page.add(login_view)
+
+    page.add(ft.Container(
+        expand=True,
+        bgcolor="#FBFEFB",
+        alignment=ft.alignment.center,  # place whatever is inside in the center of the screen
+        content=login_view
+    ))
 
 
 # Entry point
