@@ -6,7 +6,7 @@ from src.presenters.principal_presenter import PrincipalPresenter
 class PrincipalInterface(ft.Column):
 
     def __init__(self, page: ft.Page):
-        super().__init__(expand=True)  # Constructor reference (ft.Column)
+        super().__init__(expand=True, spacing=20)  # Constructor reference (ft.Column)
 
         # Reference to the page
         self.page = page
@@ -14,8 +14,6 @@ class PrincipalInterface(ft.Column):
         # MVP: Model and Presenter
         model = Kpis()
         self.presenter = PrincipalPresenter(self, model)
-
-        self.page.scroll = 'auto'
 
         # --- Controls ---
         # - KPI cards -
@@ -25,7 +23,8 @@ class PrincipalInterface(ft.Column):
                 padding=15,
                 alignment=ft.alignment.center,
                 bgcolor='#EFE5DC',
-                border_radius=10
+                border_radius=10,
+                expand=True
             )
         )
         self.kpi_egresos = ft.Card(
@@ -34,7 +33,8 @@ class PrincipalInterface(ft.Column):
                 padding=15,
                 alignment=ft.alignment.center,
                 bgcolor='#EFE5DC',
-                border_radius=10
+                border_radius=10,
+                expand=True
             )
         )
         self.kpi_ultima_venta = ft.Card(
@@ -43,10 +43,20 @@ class PrincipalInterface(ft.Column):
                 padding=15,
                 alignment=ft.alignment.center,
                 bgcolor='#EFE5DC',
-                border_radius=10
+                border_radius=10,
+                expand=True
             )
         )
-        # - Table -
+
+        # --- KPIs container ---
+        kpis_container = ft.Row(
+            controls=[self.kpi_ingresos, self.kpi_egresos, self.kpi_ultima_venta],
+
+            alignment=ft.MainAxisAlignment.START,
+            spacing=20
+        )
+
+        # --- Table "Productos vendidos" ---
         self.productos_vendidos = ft.DataTable(
             columns=[
                 ft.DataColumn(ft.Text("ID")),
@@ -56,19 +66,17 @@ class PrincipalInterface(ft.Column):
             ],
             rows=[]  # start empty
         )
+        # --- Table Container ---
+        table_container = ft.Column(
+            controls=[ft.Text(value="Productos vendidos", size=18),
+                      self.productos_vendidos],
+
+            alignment=ft.MainAxisAlignment.START,
+            spacing=10
+        )
 
         # -- Layout principal --
         self.controls = [
-            # -- KPIs --
-            ft.Row(
-                controls=[
-                    self.kpi_ingresos, self.kpi_egresos, self.kpi_ultima_venta
-                ],
-                alignment=ft.MainAxisAlignment.START,
-                spacing=20,
-                expand=False
-            ),
-
-            ft.Text(value="Productos vendidos", size=18),
-            self.productos_vendidos
+            kpis_container,
+            table_container
         ]
