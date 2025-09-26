@@ -5,7 +5,8 @@ class LoginPresenter:
 
     def handle_login(self, username, password):
         if self.model.authenticate_user(username, password):
-            self.view.show_message("Login exitoso")
+            self.view.show_message("Login exitoso!")
+            self.view.go_to_main_view()
         else:
             self.view.show_message("Usuario o contraseña incorrectos")
 

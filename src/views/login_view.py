@@ -1,6 +1,7 @@
 import flet as ft
 from src.presenters.login_presenter import LoginPresenter
 from src.models.login_model import AuthenticationModel
+from src.views.main_view import SideMenuView
 
 
 class LoginView(ft.Column):
@@ -66,3 +67,7 @@ class LoginView(ft.Column):
     # --- Interface exposed to the presenter ---
     def show_message(self, text):
         self.page.open(ft.SnackBar(content=ft.Text(text)))
+
+    def go_to_main_view(self):
+       self.page.clean()
+       self.page.add(SideMenuView(self.page))
