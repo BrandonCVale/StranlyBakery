@@ -1,6 +1,7 @@
 import flet as ft
 from src.views.principal_view import PrincipalInterface
 from src.views.inventario_view import InventarioView
+from src.views.ventas_view import VentasView
 
 
 class SideMenuView(ft.Container):
@@ -87,7 +88,8 @@ class SideMenuView(ft.Container):
 
         views = {
             "Principal": PrincipalInterface,
-            "Inventario": InventarioView
+            "Inventario": InventarioView,
+            "Ventas": VentasView
         }
 
         if selected_label in views:

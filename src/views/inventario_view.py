@@ -84,7 +84,7 @@ class InventarioView(ft.Column):
             expand=True,
             width=self.page.width,
             border_radius=10,
-            bgcolor="#DCE0D9",
+            bgcolor="#FBFEFB",
             padding=10
         )
         # --- Alerts ---
