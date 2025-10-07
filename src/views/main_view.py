@@ -2,6 +2,10 @@ import flet as ft
 from src.views.principal_view import PrincipalInterface
 from src.views.inventario_view import InventarioView
 from src.views.ventas_view import VentasView
+from src.views.finanzas_view import FinanzasView
+from src.views.proveedores_view import ProveedoresView
+from src.views.clientes_view import ClientesView
+from src.views.configuracion_view import ConfiguracionView
 
 
 class SideMenuView(ft.Container):
@@ -89,7 +93,11 @@ class SideMenuView(ft.Container):
         views = {
             "Principal": PrincipalInterface,
             "Inventario": InventarioView,
-            "Ventas": VentasView
+            "Ventas": VentasView,
+            "Finanzas": FinanzasView,
+            "Proveedores": ProveedoresView,
+            "Clientes": ClientesView,
+            "Configuración": ConfiguracionView
         }
 
         if selected_label in views:
