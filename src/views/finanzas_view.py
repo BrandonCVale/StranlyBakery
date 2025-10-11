@@ -15,7 +15,7 @@ class FinanzasView(ft.Column):
         model = FinanzasModel()
         self.presenter = FinanzasPresenter(self, model)
 
-        # ----- CONTROLS -----
+        # ----- 1. CONTROLS -----
         # --- Header ---
         self.date_picker = ft.DatePicker(
             first_date=datetime.datetime(year=2024, month=1, day=1),
@@ -70,7 +70,7 @@ class FinanzasView(ft.Column):
             rows=[]
         )
 
-        # ----- CONTAINERS -----
+        # ----- 2. CONTAINERS -----
         header = ft.Row(
             controls=[self.btn_fecha, self.texto_fecha, self.btn_export_pdf, self.btn_export_excel],
             spacing=20
@@ -86,9 +86,37 @@ class FinanzasView(ft.Column):
             spacing=20
         )
 
-        # --- Layout principal ---
+        # --- 3. LAYOUT ---
         self.controls = [
             header,
             kpis_row,
             body
         ]
+
+    # --- Metodo que muestra la fecha en la interfaz ---
+    def actualizar_datos(self, datos):
+        ingresos = datos.get("ingresos", 0)
+        egresos = datos.get("egresos", 0)
+        balance = datos.get("balance", ingresos - egresos)
+        fecha = datos.get("fecha", None)
+        grafico = datos.get("grafico", "")
+
+        # --- Actualizar KPIs ---
+        self.kpi_ingresos.actualizar_valor(ingresos)
+        self.kpi_egresos.actualizar_valor(egresos)
+        self.kpi_balance.actualizar_valor(balance)
+
+        # --- Actualizar texto de fecha ---
+        if fecha:
+            self.texto_fecha.value = f"Fecha seleccionada: {fecha}"
+
+        # --- Actualizar gráfico ---
+        if grafico:
+            self.grafico_ingresos_egresos.src_base64 = grafico
+
+        # --- Actualizar tablas (por ahora vacías hasta ampliar modelo) ---
+        self.tbl_ingresos.rows.clear()
+        self.tbl_egresos.rows.clear()
+
+        # --- Refrescar interfaz ---
+        self.page.update()

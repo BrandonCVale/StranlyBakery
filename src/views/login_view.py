@@ -1,15 +1,16 @@
 import flet as ft
 from src.presenters.login_presenter import LoginPresenter
-from src.models.login_model import AuthenticationModel
+from src.models.authentication_model import AuthenticationModel
 from src.views.main_view import SideMenuView
+from src.views.forgot_password_view import ForgotPasswordView
 
 
 class LoginView(ft.Column):
     def __init__(self, page: ft.Page):
         super().__init__(
-            expand=True, # Takes up the entire screen space
-            alignment=ft.MainAxisAlignment.CENTER, # alinea en el centro
-            horizontal_alignment=ft.CrossAxisAlignment.CENTER, # centrado horizontal
+            expand=True,  # Takes up the entire screen space
+            alignment=ft.MainAxisAlignment.CENTER,  # alinea en el centro
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # centrado horizontal
         )
 
         # Saving the reference to the page
@@ -19,7 +20,7 @@ class LoginView(ft.Column):
         model = AuthenticationModel()
         self.presenter = LoginPresenter(self, model)
 
-        # --- Controls ---
+        # ----- 1. CONTROLS -----
         self.user_name = ft.TextField(
             label="Username",
             width=400,
@@ -47,7 +48,7 @@ class LoginView(ft.Column):
             on_click=self.on_forgot_password
         )
 
-        # -- Layout Principal --
+        # -- 3. LAYOUT --
         self.controls = [
             self.user_name,
             self.password,
@@ -70,5 +71,9 @@ class LoginView(ft.Column):
         self.page.open(ft.SnackBar(content=ft.Text(text)))
 
     def go_to_main_view(self):
-       self.page.clean()
-       self.page.add(SideMenuView(self.page))
+        self.page.clean()
+        self.page.add(SideMenuView(self.page))
+
+    def go_to_forgot_password_view(self):
+        self.page.clean()
+        self.page.add(ForgotPasswordView(self.page))

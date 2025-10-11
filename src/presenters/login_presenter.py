@@ -11,4 +11,7 @@ class LoginPresenter:
             self.view.show_message("Usuario o contraseña incorrectos")
 
     def handle_forgot_password(self, username):
-        self.view.show_message("🔑 Funcionalidad en construcción")
+        if self.model.authenticate_only_user(username):
+            self.view.go_to_forgot_password_view()
+        else:
+            self.view.show_message("Ingresa tu usuario")

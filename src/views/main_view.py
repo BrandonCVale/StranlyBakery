@@ -6,6 +6,7 @@ from src.views.finanzas_view import FinanzasView
 from src.views.proveedores_view import ProveedoresView
 from src.views.clientes_view import ClientesView
 from src.views.configuracion_view import ConfiguracionView
+from src.presenters.side_menu_presenter import SideMenuPresenter
 
 
 class SideMenuView(ft.Container):
@@ -13,6 +14,9 @@ class SideMenuView(ft.Container):
     def __init__(self, page: ft.Page):
         super().__init__(expand=True)  # Container occupies all the page
         self.page = page
+
+        # --- MVP ---
+        self.presenter = SideMenuPresenter(self)
 
         # ----- 1. CONTROLS -----
         # --- Side Menu with NavigationRail inside a Container ---
